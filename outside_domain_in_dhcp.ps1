@@ -663,7 +663,7 @@ if ($monitorstatic -eq $true)
         $staticresults | Export-Clixml $staticpath
         if ($staticmodified.Count -gt 0)
         {
-            Send-MailMessage -From $from -To $to -Subject "DHCP reservations changed" -Bodyashtml $([string]($staticmodified | ConvertTo-Html -PreContent "Liste des modifications détectées sur les réservations du DHCP" -Head "<style>  td, th  {border: 1px solid black;} table{border-spacing:0;} </style>")) -Encoding $encoding -SmtpServer $smtpserver
+            Send-MailMessage -From $from -To $to -Subject "DHCP reservations changed" -Bodyashtml $([string]($staticmodified | ConvertTo-Html -PreContent "List of detected modifications on DHCP reservations" -Head "<style>  td, th  {border: 1px solid black;} table{border-spacing:0;} </style>")) -Encoding $encoding -SmtpServer $smtpserver
             $staticmodified | Export-Csv (join-path $configurationarray.path $("reserved_changed_"+ $dateforcsv +".csv")) -NoTypeInformation -Append -Delimiter ";" -Encoding UTF8
 
         }
