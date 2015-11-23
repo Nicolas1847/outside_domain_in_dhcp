@@ -555,7 +555,7 @@ if ($fichiernondomaine -ne $null)
                 #L'ordinateur est trouvé, mais sous une autre carte réseau
                 $index = $notindomainwithexceptions.pc.IndexOf($computer.pc) #changé $_.pc en $computer.pc
                 $item = $notindomainwithexceptions[$index]
-                $item | Add-Member -MemberType NoteProperty -Name "Raison" -Value "Nouvelle carte réseau" -force
+                $item | Add-Member -MemberType NoteProperty -Name "Raison" -Value "New network card" -force
                 $resultingarray.Add($item) | Out-Null
             }
             elseif ($results.ip -contains $computer.ip)
@@ -570,7 +570,7 @@ if ($fichiernondomaine -ne $null)
                 if ($computer.Date -gt $item.Date)
                 {
                     #La valeur date est plus grande, il a donc eu un renouvellement de bail
-                    $item | Add-Member -MemberType NoteProperty -Name "Raison" -Value "Renouvellement du bail DHCP" -Force
+                    $item | Add-Member -MemberType NoteProperty -Name "Raison" -Value "New DHCP Lease" -Force
                     $resultingarray.Add($item) | Out-Null
                 }
                 #Sinon, on enregistre pas, on avertit pas.
@@ -581,7 +581,7 @@ if ($fichiernondomaine -ne $null)
         {
             #Si le fichier xml importé ne comporte pas l'ordinateur, c'est donc une nouvelle connexion
             $item = $computer
-            $item | Add-Member -MemberType NoteProperty -Name "Raison" -Value "Nouvelle connexion" -Force
+            $item | Add-Member -MemberType NoteProperty -Name "Raison" -Value "New connection" -Force
             $resultingarray.Add($item) | Out-Null
 
         }
